@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Coworker Essential — Siametrics Consulting</title>
+  <meta name="description" content="AI Coworker Essential — เพื่อนร่วมงาน AI คนแรกของทีม. Live Workshop · Interactive Website · Personal AI Tutor by Siametrics Consulting." />
+
+  <!-- Open Graph / social preview -->
+  <meta property="og:title" content="AI Coworker Essential — Siametrics Consulting" />
+  <meta property="og:description" content="เพื่อนร่วมงาน AI คนแรกของทีม — หลักสูตรที่ไม่จบแค่ในห้องเรียน" />
+  <meta property="og:image" content="/poster.png" />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" type="image/png" href="/poster.png" />
+
+  <style>
+    :root {
+      --bg: #0f1b2d;           /* deep navy backdrop */
+      --bg-2: #16243a;
+      --shadow: rgba(0, 0, 0, 0.45);
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: radial-gradient(1200px 800px at 50% 0%, var(--bg-2), var(--bg)) fixed;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Full-view stage: poster is always fully visible, centered, scaled to fit. */
+    .stage {
+      min-height: 100svh;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(0px, 2vmin, 32px);
+    }
+
+    .poster {
+      display: block;
+      max-width: 100%;
+      max-height: 100svh;          /* never overflow the viewport height */
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 10px;
+      box-shadow: 0 24px 60px var(--shadow);
+      cursor: zoom-in;
+      transition: transform 0.25s ease;
+    }
+
+    /* Click to toggle 1:1 full-resolution scroll view */
+    .poster.zoomed {
+      max-height: none;
+      max-width: none;
+      width: auto;
+      cursor: zoom-out;
+      border-radius: 0;
+    }
+
+    body.is-zoomed .stage {
+      align-items: flex-start;
+      overflow: auto;
+    }
+
+    /* Fallback when the image file is missing */
+    .fallback {
+      display: none;
+      max-width: 520px;
+      margin: auto;
+      padding: 40px;
+      border-radius: 14px;
+      background: #fff;
+      color: #1f2937;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      text-align: center;
+      box-shadow: 0 24px 60px var(--shadow);
+    }
+    .fallback code {
+      background: #f1f5f9;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.9em;
+    }
+
+    @media print {
+      html, body { background: #fff; }
+      .poster { box-shadow: none; max-height: none; }
+    }
+  </style>
+</head>
+<body>
+  <main class="stage">
+    <img
+      id="poster"
+      class="poster"
+      src="poster.png"
+      alt="AI Coworker Essential — เพื่อนร่วมงาน AI คนแรกของทีม โดย Siametrics Consulting"
+      onerror="this.style.display='none';document.getElementById('fallback').style.display='block';"
+    />
+
+    <div id="fallback" class="fallback">
+      <h2>Poster image not found</h2>
+      <p>Drop the poster image into this folder and name it <code>poster.png</code>, then refresh.</p>
+    </div>
+  </main>
+
+  <script>
+    // Click the poster to toggle full-resolution (1:1) scroll view.
+    const poster = document.getElementById('poster');
+    poster.addEventListener('click', () => {
+      poster.classList.toggle('zoomed');
+      document.body.classList.toggle('is-zoomed');
+      if (poster.classList.contains('zoomed')) window.scrollTo(0, 0);
+    });
+  </script>
+</body>
+</html>
